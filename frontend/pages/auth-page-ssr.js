@@ -1,4 +1,4 @@
-import { withSession } from "../src/services/auth/session";
+import { withSession } from '../src/services/auth/session';
 
 function AuthPageSSR(props) {
 
@@ -7,6 +7,9 @@ function AuthPageSSR(props) {
       <h1>
         Auth Page Server Side Render
       </h1>
+      <p>
+        <a href="/logout">Logout</a>
+      </p>
       <pre>
         {JSON.stringify(props, null, 2)}
       </pre> 
@@ -15,7 +18,6 @@ function AuthPageSSR(props) {
 }
 
 export default AuthPageSSR;
-
 
 // Decorator Pattern
 export const getServerSideProps = withSession((ctx) => {

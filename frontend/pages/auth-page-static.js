@@ -1,35 +1,20 @@
 import React from 'react';
-import { authService } from '../auth/authService';
+import { withSessionHOC } from '../src/services/auth/session';
 
-function useSession(){
-  const [session, setSession] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  authService.getSession()
-
-  return{
-    data:session,
-    error,
-    loading
-  }
-}
-
-
-function AuthPageStatic(props){
-  const { loading, error, data } = useSession();
-  console.log(session);
-  return(
+function AuthPageStatic(props) {
+  return (
     <div>
       <h1>
         Auth Page Static
       </h1>
+      <p>
+        <a href="/logout">Logout</a>
+      </p>
       <pre>
         {JSON.stringify(props, null, 2)}
-      </pre>
+      </pre> 
     </div>
   )
 }
 
-export default AuthPageStatic;
-
+export default withSessionHOC(AuthPageStatic);
